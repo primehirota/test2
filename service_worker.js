@@ -1,7 +1,7 @@
 // キャッシュ名とキャッシュファイルの指定
-var CACHE_NAME = 'pwa-sample-caches';
+var CACHE_NAME = 'pwa-sample-caches2';
 var urlsToCache = [
-	'/primehirota.github.io/test2/',
+	'/primehirota.github.io/test2/'
 ];
 
 // インストール処理
