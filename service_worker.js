@@ -1,3 +1,4 @@
+/*
 // キャッシュ名とキャッシュファイルの指定
 var CACHE_NAME = 'pwa-sample-caches2';
 var urlsToCache = [
@@ -24,4 +25,15 @@ self.addEventListener('fetch', function(event) {
                 return response ? response : fetch(event.request);
             })
     );
+});
+*/
+self.addEventListener('install', function(e) {
+ e.waitUntil(
+   caches.open('airhorner').then(function(cache) {
+     return cache.addAll([
+       '/',
+       '/index.html',
+     ]);
+   })
+ );
 });
