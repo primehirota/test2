@@ -1,4 +1,4 @@
-/*
+/**/
 // キャッシュ名とキャッシュファイルの指定
 var CACHE_NAME = 'pwa-sample-caches2';
 var urlsToCache = [
@@ -26,7 +26,8 @@ self.addEventListener('fetch', function(event) {
             })
     );
 });
-*/
+/**/
+/*
 self.addEventListener('install', function(e) {
  e.waitUntil(
    caches.open('pwa-sample-caches2').then(function(cache) {
@@ -38,3 +39,4 @@ self.addEventListener('install', function(e) {
    })
  );
 });
+*/
