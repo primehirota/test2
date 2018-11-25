@@ -35,8 +35,7 @@
 		if (mX >= window.innerWidth) {
 			mX -= window.innerWidth;
 		}
-		document.getElementById("txt").innerHTML = mX + ' ' + window.innerWidth + ' ' + document.getElementById("divM").parentNode.width;
-//		document.getElementById("txt").innerHTML = mX + ' ' + window.innerWidth;
+//		document.getElementById("txt").innerHTML = mX + ' ' + window.innerWidth + ' ' + document.getElementById("divM").parentNode.width;
 
 		//------------------------------------------------------------------
 		// ècà íu
@@ -92,6 +91,22 @@
 			mJmode = mode;
 		}
 	}
+
+	window.addEventListener("orientationchange", function(){
+alert(window.orientation);
+	    var deg;
+	    switch (window.orientation) {
+	        case -90:
+	            deg = 90;  break;
+	        case 0:
+	            deg = 0;   break;
+	        case 90:
+	            deg = -90; break;
+	        case 180:
+	            deg = 180; break;
+	    }
+	    document.documentElement.style.transform = "rotate(" + deg + "deg)";
+	}, false);
 	timer();
 
 </script>
