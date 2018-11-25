@@ -1,12 +1,13 @@
 <html>
 	<BODY style="width:100%; overflow:hidden;background:url(bg.png) repeat;padding:0px;margin:0px;">
-		<div id="divM" style="width:64px;height:64px;position:absolute;overflow:hidden;z-index:100;border:z-index:100;" />
+		<div id="divM" style="width:64px;height:64px;position:absolute;overflow:hidden;z-index:100;" />
 			<img id="mario" src="Mario.gif" style="position:relative;" />
 		</div>
 		<div id="ground" style="width:100%;position:absolute;height:128px;bottom:0px;background:url(ground.png) repeat;z-index:1;" /></div>
 		<div id="sky" style="width:100%;position:absolute;height:300px;top:0px;background:url(sky.png) repeat;z-index:2;" /></div>
 		<input type=button id="btn" style="position:absolute;width:132px;height:68px;bottom:10px;left: 10px;margin:0px;padding:0px;background:#ccc url(b1.png);z-index:10;" onclick="bodyClick(0);" > 
 		<input type=button id="btn" style="position:absolute;width:132px;height:68px;bottom:10px;left:152px;margin:0px;padding:0px;background:#ccc url(b2.png);z-index:11;" onclick="bodyClick(1);" > 
+		<div id="txt" style="width:64px;height:64px;position:absolute;z-index:1000;left:0px;top:0px;" />
 	</BODY>
 
 <script>
@@ -31,6 +32,8 @@
 		if (mX >= window.innerWidth) {
 			mX -= window.innerWidth;
 		}
+		document.getElementById("txt").innerHTML = mX + ' ' + window.innerWidth + ' ' + document.getElementById("divM").parentNode.width;
+//		document.getElementById("txt").innerHTML = mX + ' ' + window.innerWidth;
 
 		//------------------------------------------------------------------
 		// ècà íu
