@@ -1,0 +1,8 @@
+{
+    "short_name": "放物線サンプル",
+    "name": "放物線サンプルアプリ",
+    "display": "standalone",
+	"orientation": "landscape",
+    "start_url": "index.html",
+	"background_color": "#2196F3"
+}
