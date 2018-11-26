@@ -91,22 +91,6 @@
 			mJmode = mode;
 		}
 	}
-
-	window.addEventListener("orientationchange", function(){
-alert(window.orientation);
-	    var deg;
-	    switch (window.orientation) {
-	        case -90:
-	            deg = 90;  break;
-	        case 0:
-	            deg = 0;   break;
-	        case 90:
-	            deg = -90; break;
-	        case 180:
-	            deg = 180; break;
-	    }
-	    document.documentElement.style.transform = "rotate(" + deg + "deg)";
-	}, false);
 	timer();
 
 </script>
