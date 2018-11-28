@@ -13,28 +13,32 @@
 		<div id="txt" style="width:64px;height:64px;position:absolute;z-index:1000;left:0px;top:0px;" />
 
 <script>
-	var mX = 0;
-	var mY0 = window.innerHeight - 64 * 3;
-	var mY = mY0;
-	var mCount = 1;
-	var mJump = false;
-	var mJmode = 0;
-	var mV = 0.0;
-	var mV0 = -400.0;
-	var mG = 800.0;
+	var mY0 = window.innerHeight - 64 * 3;		// 地面の位置
+	var mX = 0;																// 前回X座標
+	var mY = mY0;															// 前回Y座標
+	var mVy = 0.0;														// Y軸方向速度
+	var mVy0 = -600.0;												// Y軸方向初速
+	var G = 980.0;														// 重力加速度
+	var VX = 225;															// X軸方向速度
+	var T = 0.2;															// タイマー間隔
+	var mCount = 1;														// アニメーション
+	var mJump = false;												// ジャンプフラグ
+	var mJmode = 0;														// ジャンプモード(0：放物線／1：ジグザグ)
 
+	//--------------------------------------------------------------------
+	// タイマー処理
+	//--------------------------------------------------------------------
 	var timer = function() {
 		//------------------------------------------------------------------
 		// 横位置
 		//------------------------------------------------------------------
-		document.getElementById("divM").style.left = mX;
-
-		mX += 45;
+		// 速さ VX で等速直線運動
+		mX += (VX * T);
 
 		if (mX >= window.innerWidth) {
 			mX -= window.innerWidth;
 		}
-//		document.getElementById("txt").innerHTML = mX + ' ' + window.innerWidth + ' ' + document.getElementById("divM").parentNode.width;
+		document.getElementById("divM").style.left = mX;
 
 		//------------------------------------------------------------------
 		// 縦位置
@@ -42,8 +46,10 @@
 		if (mJump) {
 			// 放物線
 			if (mJmode == 0) {
-				mY = mY + mV * 0.2 + 0.5 * mG * 0.2 * 0.1;
-				mV = mV + mG * 0.2;
+				// 初速 mVy 、加速度 G で等加速度運動
+				mY = mY + mVy * T + 0.5 * G * T * T;
+				mVy = mVy + G * T;
+				// 地面にもどったら終了
 				if (mY > mY0) {
 					mY = mY0;
 					mJump = false;
@@ -51,10 +57,10 @@
 			}
 			// ジグザグ
 			else if (mJmode == 1) {
-				if ((mY < mY0-128) && (mV < 0)) {
-						mV *= -1;
+				if ((mY < mY0-128) && (mVy < 0)) {
+						mVy *= -1;
 				}
-				mY = mY + mV/10;
+				mY = mY + mVy/10;
 				if (mY > mY0) {
 					mY = mY0;
 					mJump = false;
@@ -80,13 +86,19 @@
 			mCount = 1;
 		}
 		//------------------------------------------------------------------
-		setTimeout(timer, 200);
+		setTimeout(timer, T * 1000);
 	}
 
+	//--------------------------------------------------------------------
+	// ボタンクリック
+	//--------------------------------------------------------------------
 	function bodyClick(mode) {
+		// ジャンプ中でなければ
 		if (!mJump) {
+			// ジャンプ開始
 			mJump = true;
-			mV = mV0;
+			// 初速 mVy0
+			mVy = mVy0;
 			mJmode = mode;
 		}
 	}
